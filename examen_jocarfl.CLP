@@ -14,6 +14,7 @@
 ?f1 <- (platos ?cp mesa ?nm)
 
 (test (= ?pr 0 ))
+(test (< ?cp 4 ))
 =>
 (assert (robot ?nm platos 0 ))
 (retract ?f1)
@@ -28,18 +29,15 @@
 (test (<= ?cr 4))
 (test (<= ?cp 4))
 =>
-(assert (robot ?nm platos ?cp))
+(assert (robot 0 platos ?cp))
 (retract ?f1)
 (retract ?f)
 )
 
-(defrule comprobar-si-caben-platos
-?f <- (robot ?pr platos ?cr)
-?f1 <- (mesa ?nm platos ?cp)
+(defrule final
+(not (mesa ?nm platos ?cp))
+(not (platos ?pc mesa ?mn))
 
-(test (= ?pr ?nm ))
-(test (<= ?cr 4))
-(test (<= ?cp 4))
 =>
-(assert (robot ?nm platos ?cp))
+(halt)
 )
