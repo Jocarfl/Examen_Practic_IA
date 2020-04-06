@@ -34,6 +34,7 @@
 (retract ?f)
 )
 
+
 (defrule final
 (not (mesa ?nm platos ?cp))
 (not (platos ?pc mesa ?mn))
